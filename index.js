@@ -99,7 +99,5 @@ if (ans.select == "delete") {
     let newTodo = todos.filter(val => val !== deleteTodo.todo);
     todos = [...newTodo];
     console.log(todos);
-    
 }
 createTodo(todos);
-

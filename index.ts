@@ -9,9 +9,9 @@ async function createTodo(todos:string[]){}
 do{
     let ans = await inquirer.prompt({
         type : "list",
-        message :(chalk.bgBlue ("select an operation")),
+        message :(chalk.blue ("select an operation")),
         name: "select",
-        choices: [chalk.blue("Add"),chalk.yellow("update"),chalk.green("view"),chalk.red("delete"), "Exit"],
+        choices: [chalk.blue("Add"),chalk.yellow("update"),chalk.green("view"),chalk.red("delete")],
       
       })
     
