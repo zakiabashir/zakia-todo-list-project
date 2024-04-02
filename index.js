@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
-let todos = [chalk.bgYellow("oil"), chalk.green("soap"), chalk.bgBlackBright("detergent"), "mayonase", chalk.red("ketchup"), chalk.bgCyanBright("cake")];
+let todos = [chalk.bgYellow("oil"), chalk.green("soap"), chalk.bgBlackBright("detergent"), "mayonase", chalk.red("ketchup"), chalk.blue("cake")];
 async function createTodo(todos) { }
 do {
     let ans = await inquirer.prompt({
         type: "list",
-        message: (chalk.bgBlue("select an operation")),
+        message: (chalk.bgCyanBright("select an operation")),
         name: "select",
-        choices: [chalk.blue("Add"), chalk.yellow("update"), chalk.green("view"), chalk.red("delete"), "Exit"],
+        choices: [chalk.blue("Add"), chalk.yellow("update"), chalk.green("view"), chalk.red("delete")],
     });
     // console.log(ans);
     if (ans.select == "Add") {

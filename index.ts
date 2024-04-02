@@ -3,13 +3,13 @@ import inquirer from "inquirer";
 import chalk from "chalk"
 
 
-let todos : string[] = [chalk.bgYellow("oil"),chalk.green ("soap"), chalk.bgBlackBright("detergent"), "mayonase", chalk.red("ketchup"), chalk.bgCyanBright("cake")];                           
+let todos : string[] = [chalk.bgYellow("oil"),chalk.green ("soap"), chalk.bgBlackBright("detergent"), "mayonase", chalk.red("ketchup"), chalk.blue("cake")];                           
 
 async function createTodo(todos:string[]){}
 do{
     let ans = await inquirer.prompt({
         type : "list",
-        message :(chalk.blue ("select an operation")),
+        message :(chalk.bgCyanBright ("select an operation")),
         name: "select",
         choices: [chalk.blue("Add"),chalk.yellow("update"),chalk.green("view"),chalk.red("delete")],
       
