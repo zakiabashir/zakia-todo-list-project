@@ -1,103 +1,69 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
-let todos = [chalk.bgYellow("oil"), chalk.green("soap"), chalk.bgBlackBright("detergent"), "mayonase", chalk.red("ketchup"), chalk.blue("cake")];
-async function createTodo(todos) { }
-do {
-    let ans = await inquirer.prompt({
-        type: "list",
-        message: (chalk.bgCyanBright("select an operation")),
-        name: "select",
-        choices: [chalk.blue("Add"), chalk.yellow("update"), chalk.green("view"), chalk.red("delete")],
-    });
-    // console.log(ans);
-    if (ans.select == "Add") {
-        let addtodo = await inquirer.prompt({
-            type: "input",
-            message: (chalk.magenta("Add items in the list")),
-            name: "todo",
-        });
-        todos.push(addtodo.todo);
-    }
-    if (ans.select == "update") {
-        let updateTodo = await inquirer.prompt({
+let continueWork = true;
+let listArray = ["oil", "ketchup", "mayonase", "peprica powde", "sugar", "black paper", "tooth paste"];
+while (continueWork) {
+    let userOptions = await inquirer.prompt([
+        {
+            name: "option",
+            message: chalk.yellow("WHAT YOU WANT TO DO ?"),
             type: "list",
-            message: (chalk.green("update items in the list")),
-            name: "todo",
-            choices: todos.map(item => item),
-        });
-        let addtodo = await inquirer.prompt({
-            type: "input",
-            message: (chalk.magenta("Add items in the list")),
-            name: "todo",
-        });
-        let newTodo = todos.filter(val => val !== updateTodo.todo);
-        todos = [...newTodo, addtodo.todo];
-        console.log(todos);
+            choices: [
+                chalk.green("DISPLAY YOUR LIST:"),
+                chalk.green("ADD YOUR LIST:"),
+                chalk.green("DELET ANY LIST:"),
+                chalk.green("EXIT THE PROGRAM:"),
+            ],
+        },
+    ]);
+    if (userOptions.option === "ADD YOUR LIST:") {
+        let userList = await inquirer.prompt([
+            {
+                name: "list",
+                type: "input",
+                message: "WRITE YOUR LIST YOU WANT TO ADD.",
+            },
+        ]);
+        listArray.push(userList.list);
+        console.log(chalk.yellow(`\n\t\t"${userList.list}".`) +
+            chalk.green(`  <= ADDED IN THE LIST:\n`));
     }
-    if (ans.select == "view") {
-        console.log("*** TO DO LIST ***");
-        console.log(todos);
-        console.log("******************");
+    else if (userOptions.option === "DISPLAY YOUR LIST:") {
+        if (listArray >= []) {
+            console.log(chalk.yellow(`\n\t\t=======================================================`));
+            console.log(chalk.yellow(`\t\t\t\t\tTO DO LIST\n`));
+            listArray.forEach((val, index) => {
+                console.log(chalk.yellow(`\t\t${index}: ${val}`));
+            });
+            console.log(chalk.yellow(`\n\t\t=======================================================\n`));
+        }
+        else if (listArray < []) {
+            console.log(chalk.green(`\n" YOU DON'T HAVE ANY LIST.
+        FIRST YOU CAN ADD YOUR LIST THEN BACK TO DISPLAY OPTION: "\n`));
+        }
     }
-    if (ans.select == "delete") {
-        let deleteTodo = await inquirer.prompt({
-            type: "list",
-            message: "update items in the list",
-            name: "todo",
-            choices: todos.map(item => item),
-        });
-        let newTodo = todos.filter(val => val !== deleteTodo.todo);
-        todos = [...newTodo];
-        console.log(todos);
+    else if (userOptions.option === "DELET ANY LIST:") {
+        let indexDel = await inquirer.prompt([
+            {
+                name: "index",
+                type: "number",
+                message: "ENTER LIST INDEX YOU WANT TO DLETE ?",
+            },
+        ]);
+        if (indexDel.index >= 0 && indexDel.index <= listArray.length) {
+            let deletedItem = listArray.splice(indexDel.index, 1);
+            console.log(chalk.red(`\n\t"${deletedItem}"`) +
+                chalk.yellow(`  <= REMOVE FROM LIST\n`));
+        }
+        else {
+            console.log(chalk.red(`\n\t\t"INDEX NOT FOUND"\n`));
+        }
     }
-} while (true);
-let ans = await inquirer.prompt({
-    type: "list",
-    message: "select an operation",
-    name: "select",
-    choices: ["Add", "update", "view", "delete"],
-});
-// console.log(ans);
-if (ans.select == "Add") { //ye condition ha
-    let addtodo = await inquirer.prompt({
-        type: "input",
-        message: "Add items in the list",
-        name: "todo",
-    });
-    todos.push(addtodo.todo);
-    todos.forEach(todo => console.log(todo));
+    else if (userOptions.option === "EXIT THE PROGRAM:") {
+        console.log(chalk.magenta(`\t=========================================================`) + chalk.yellow(`===============`));
+        console.log(chalk.green(`\t   THANKS FOR USING zakia's TODO-LIST PROGRAM; CREATOR BY: =>`) + chalk.white(` "ZAKIA BASHIR"`));
+        console.log(chalk.magenta(`\t=========================================================`) + chalk.yellow(`===============`));
+        break;
+    }
 }
-if (ans.select == "update") {
-    let updateTodo = await inquirer.prompt({
-        type: "list",
-        message: "update items in the list",
-        name: "todo",
-        choices: todos.map(item => item),
-    });
-    let addtodo = await inquirer.prompt({
-        type: "input",
-        message: "Add items in the list",
-        name: "todo",
-    });
-    let newTodo = todos.filter(val => val !== updateTodo.todo);
-    todos = [...newTodo, addtodo.todo];
-    console.log(todos);
-}
-if (ans.select == "view") {
-    console.log("*** TO DO LIST ***");
-    console.log(todos);
-    console.log("******************");
-}
-if (ans.select == "delete") {
-    let deleteTodo = await inquirer.prompt({
-        type: "list",
-        message: "update items in the list",
-        name: "todo",
-        choices: todos.map(item => item),
-    });
-    let newTodo = todos.filter(val => val !== deleteTodo.todo);
-    todos = [...newTodo];
-    console.log(todos);
-}
-createTodo(todos);
