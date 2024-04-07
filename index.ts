@@ -16,7 +16,7 @@ while (continueWork) {
         "DISPLAY YOUR LIST:",
        "ADD YOUR LIST:",
        "DELET ANY LIST:",
-       "EXIT THE PROGRAM:",
+      "EXIT THE PROGRAM:",
       ],
     },
   ]);
@@ -37,17 +37,17 @@ while (continueWork) {
   } else if (userOptions.option === "DISPLAY YOUR LIST:") {
     if (listArray >= []) {
       console.log(
-        chalk.yellow(
+        chalk.green(
           `\n\t\t=======================================================`
         )
       );
-      console.log(chalk.yellow(`\t\t\t\t\tTO DO LIST\n`));
+      console.log(chalk.magenta(`\t\t\t\t\tTO DO LIST\n`));
       listArray.forEach((val, index) => {
         console.log(chalk.yellow(`\t\t${index}: ${val}`));
       });
 
       console.log(
-        chalk.yellow(
+        chalk.green(
           `\n\t\t=======================================================\n`
         )
       );
@@ -72,7 +72,7 @@ while (continueWork) {
           chalk.yellow(`  <= REMOVE FROM LIST\n`)
       );
     } else {
-      console.log(chalk.red(`\n\t\t"INDEX NOT FOUND"\n`));
+      console.log(chalk.red(`\n\t\t"your desired indexhas been deleted "\n`));
     }
   } else if (userOptions.option === "EXIT THE PROGRAM:") {
     console.log(
