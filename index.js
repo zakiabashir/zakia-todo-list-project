@@ -1,6 +1,19 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
+console.log(chalk.green(`
+/$$                     /$$                 /$$ /$$             /$$    
+| $$                    | $$                | $$|__/            | $$    
+/$$$$$$    /$$$$$$   /$$$$$$$  /$$$$$$       | $$ /$$  /$$$$$$$ /$$$$$$  
+|_  $$_/   /$$__  $$ /$$__  $$ /$$__  $$      | $$| $$ /$$_____/|_  $$_/  
+| $$    | $$  \ $$| $$  | $$| $$  \ $$      | $$| $$|  $$$$$$   | $$    
+| $$ /$$| $$  | $$| $$  | $$| $$  | $$      | $$| $$ \____  $$  | $$ /$$
+|  $$$$/|  $$$$$$/|  $$$$$$$|  $$$$$$/      | $$| $$ /$$$$$$$/  |  $$$$/
+ \___/   \______/  \_______/ \______/       |__/|__/|_______/    \___/  
+                                                                        
+                                                                        
+                                                                                                      
+`));
 let continueWork = true;
 let listArray = ["oil", "ketchup", "mayonase", "peprica powde", "sugar", "black paper", "tooth paste"];
 while (continueWork) {
